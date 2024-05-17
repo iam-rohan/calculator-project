@@ -1,1 +1,25 @@
+body {
+  background-color: rgb(78, 28, 28);
+  text-align: center;
+}
 
+.calculator {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.display {
+  border: 1px solid black;
+  margin: 0 1px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.keypad {
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 0px 0px 5px 5px;
+}
