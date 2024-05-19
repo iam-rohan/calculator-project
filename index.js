@@ -51,8 +51,12 @@ function handleNumberButtonClick(event) {
   display.textContent = value;
   if (operand1 === null) {
     operand1 = value;
-  } else if (operand2 === null) {
+  } else if (operand2 === null && operator !== null) {
     operand2 = value;
+  } else if (operand1 !== null && operand2 === null) {
+    operand1 = value;
+    operand2 = null;
+    operator = null;
   }
 }
 
@@ -69,16 +73,25 @@ function handleEqualsButtonClick(event) {
   const value = event.target.textContent;
   console.log(operand1, operator, operand2);
   if (operand1 !== null && operand2 !== null) {
-    const result = operate(+operand1, operator, +operand2);
-    operand1 = result;
-    operator = null;
-    operand2 = null;
-    display.textContent = result;
+    if (operator == "/" && operand2 == 0) {
+      display.textContent = "Nice try! Dividing by zero? Really?";
+    } else {
+      const result = operate(+operand1, operator, +operand2);
+      operand1 = result;
+      operator = null;
+      operand2 = null;
+      if (!Number.isInteger(result)) {
+        display.textContent = result.toFixed(3);
+      } else {
+        display.textContent = result;
+      }
+    }
   }
+  console.log(operand1, operator, operand2);
 }
 
 function handleClearButtonClick() {
-  display.textContent = "";
+  display.textContent = "0";
   operand1 = null;
   operand2 = null;
   operator = null;
