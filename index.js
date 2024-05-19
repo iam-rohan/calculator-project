@@ -1,5 +1,5 @@
-let operand1 = null;
-let operand2 = null;
+let operand1 = "0";
+let operand2 = "0";
 let operator = null;
 let display = document.querySelector(".display");
 
@@ -48,29 +48,44 @@ buttons.forEach((button) => {
 
 function handleNumberButtonClick(event) {
   const value = event.target.textContent;
-  display.textContent = value;
-  if (operand1 === null) {
-    operand1 = value;
-  } else if (operand2 === null && operator !== null) {
-    operand2 = value;
-  } else if (operand1 !== null && operand2 === null) {
+
+  if ((operand1 === "0" || operand1 !== null) && operator === null) {
+    //initial input for first number
+    operand1 = operand1 === "0" ? value : operand1 + value;
+    display.textContent = operand1;
+  } else if ((operand2 !== "0" || operand2 !== null) && operator !== null) {
+    //second number initial input
+    operand2 = operand2 === "0" ? value : operand2 + value;
+    display.textContent = operand2;
+  } else if (operand1 === "-") {
+    //tackles negetive number input
+    operand1 = `-${value}`;
+    display.textContent = operand1;
+  } else if (operand1 !== "0" && operand2 === "0") {
+    //continuation of calculation
     operand1 = value;
     operand2 = null;
     operator = null;
+    display.textContent = operand1;
   }
+
+  console.log(operand1, operator, operand2);
 }
 
 function handleOperationButtonClick(event) {
   const value = event.target.textContent;
   display.textContent = value;
 
-  if (operand1 !== null && operand2 === null) {
+  if (operand1 !== "0" && operand2 === "0") {
     operator = value;
+  } else if (operand1 === "0") {
+    operand1 = value;
   }
+  console.log(operand1, operator, operand2);
 }
 
 function handleEqualsButtonClick(event) {
-  const value = event.target.textContent;
+  let value = event.target.textContent;
   console.log(operand1, operator, operand2);
   if (operand1 !== null && operand2 !== null) {
     if (operator == "/" && operand2 == 0) {
