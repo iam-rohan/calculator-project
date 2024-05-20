@@ -33,7 +33,7 @@ function operate(a, opt, b) {
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
-  button.addEventListener("click", function (event) {
+  button.addEventListener("click" || "ke", function (event) {
     if (button.classList.contains("number")) {
       handleNumberButtonClick(event);
     } else if (button.classList.contains("operation")) {
@@ -46,6 +46,21 @@ buttons.forEach((button) => {
       handleBackspaceButtonClick(event);
     }
   });
+});
+
+document.addEventListener("keydown", function (event) {
+  const key = event.key;
+  if (!isNaN(key) || key === ".") {
+    handleNumberButtonClick({ target: { textContent: key } });
+  } else if (key === "+" || key === "-" || key === "*" || key === "/") {
+    handleOperationButtonClick({ target: { textContent: key } });
+  } else if (key === "Enter" || key === "=") {
+    handleEqualsButtonClick(event);
+  } else if (key === "c" || key === "C") {
+    handleClearButtonClick();
+  } else if (key === "Backspace") {
+    handleBackspaceButtonClick();
+  }
 });
 
 function handleNumberButtonClick(event) {
@@ -91,16 +106,20 @@ function handleEqualsButtonClick(event) {
   console.log(operand1, operator, operand2);
   if (operand1 !== null && operand2 !== null) {
     if (operator == "/" && operand2 == 0) {
-      display.textContent = "Nice try! Dividing by zero? Really?";
+      display.textContent = "Infinity it is!";
     } else {
       const result = operate(+operand1, operator, +operand2);
       operand1 = result;
       operator = null;
       operand2 = "0";
-      if (!Number.isInteger(result)) {
-        display.textContent = result.toFixed(3);
+      if (result > 1e17) {
+        display.textContent = "Sorry Overflow!";
       } else {
-        display.textContent = result;
+        if (!Number.isInteger(result)) {
+          display.textContent = result.toFixed(3);
+        } else {
+          display.textContent = result;
+        }
       }
     }
   }
