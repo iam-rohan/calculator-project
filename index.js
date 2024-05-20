@@ -42,6 +42,8 @@ buttons.forEach((button) => {
       handleEqualsButtonClick(event);
     } else if (button.id === "clear") {
       handleClearButtonClick(event);
+    } else if (button.id === "backspace") {
+      handleBackspaceButtonClick(event);
     }
   });
 });
@@ -110,4 +112,14 @@ function handleClearButtonClick() {
   operand1 = "0";
   operand2 = "0";
   operator = null;
+}
+
+function handleBackspaceButtonClick() {
+  if (operand1.length > 1) {
+    operand1 = operand1.slice(0, -1);
+  } else {
+    operand1 = "0";
+  }
+  display.textContent = operand1;
+  console.log(typeof operand1, operand1, operator, operand2);
 }
