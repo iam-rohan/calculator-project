@@ -10,33 +10,39 @@
     <div class="calculator">
       <div class="display">0</div>
       <div class="keypad">
-        <div class="row">
-          <button class="number">9</button>
-          <button class="number">8</button>
-          <button class="number">7</button>
-          <button class="function" id="backspace">←</button>
+        <div class="operations-row">
+          <button class="btn operation">+</button>
+          <button class="btn operation">-</button>
+          <button class="btn operation">*</button>
+          <button class="btn operation">/</button>
         </div>
-        <div class="row">
-          <button class="number">6</button>
-          <button class="number">5</button>
-          <button class="number">4</button>
-          <button class="operation">/</button>
-        </div>
-        <div class="row">
-          <button class="number">3</button>
-          <button class="number">2</button>
-          <button class="number">1</button>
-          <button class="operation">*</button>
-        </div>
-        <div class="row">
-          <button class="number">0</button>
-          <button class="number">.</button>
-          <button class="operation">-</button>
-          <button class="operation">+</button>
-        </div>
-        <div class="row">
-          <button class="function" id="equals">=</button>
-          <button class="function" id="clear">C</button>
+        <div class="num-equal-grid">
+          <div class="numbers">
+            <div class="numbers-row">
+              <button class="btn number">9</button>
+              <button class="btn number">8</button>
+              <button class="btn number">7</button>
+            </div>
+            <div class="numbers-row">
+              <button class="btn number">6</button>
+              <button class="btn number">5</button>
+              <button class="btn number">4</button>
+            </div>
+            <div class="numbers-row">
+              <button class="btn number">3</button>
+              <button class="btn number">2</button>
+              <button class="btn number">1</button>
+            </div>
+            <div class="numbers-row">
+              <button class="btn number" id="zero">0</button>
+              <button class="btn number">.</button>
+            </div>
+            <div class="numbers-row">
+              <button class="btn function" id="clear">AC</button>
+              <button class="btn function" id="backspace">←</button>
+            </div>
+          </div>
+          <button class="btn function" id="equals">=</button>
         </div>
       </div>
     </div>

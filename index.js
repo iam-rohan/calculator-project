@@ -116,7 +116,7 @@ function handleEqualsButtonClick(event) {
         display.textContent = "Sorry Overflow!";
       } else {
         if (!Number.isInteger(result)) {
-          display.textContent = result.toFixed(3);
+          display.textContent = result.toFixed(2);
         } else {
           display.textContent = result;
         }
