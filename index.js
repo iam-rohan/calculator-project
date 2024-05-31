@@ -68,12 +68,20 @@ function handleNumberButtonClick(event) {
 
   if ((operand1 === "0" || operand1 !== null) && operator === null && typeof operand1 === "string") {
     //initial input for first number
-    operand1 = operand1 === "0" ? value : operand1 + value;
-    display.textContent = operand1;
+    if (operand1 > 9999999999999999) {
+      operand1 = "0";
+    } else {
+      operand1 = operand1 === "0" ? (operand1 = value) : (operand1 += value);
+      display.textContent = operand1;
+    }
   } else if ((operand2 !== "0" || operand2 !== null) && operator !== null) {
     //second number initial input
-    operand2 = operand2 === "0" ? value : operand2 + value;
-    display.textContent = operand2;
+    if (operand2 > 9999999999999999) {
+      operand2 = "0";
+    } else {
+      operand2 = operand2 === "0" ? (operand2 = value) : (operand2 += value);
+      display.textContent = operand2;
+    }
   } else if (operand1 === "-") {
     //tackles negetive number input
     operand1 = `-${value}`;
@@ -95,6 +103,12 @@ function handleOperationButtonClick(event) {
 
   if (operand1 !== "0" && operand2 === "0") {
     operator = value;
+  } else if (operand1 !== "0" && operator !== null && operand2 !== "0") {
+    //continuation of calculation
+    operand1 = operate(+operand1, operator, +operand2);
+    operand2 = "0";
+    operator = value;
+    display.textContent = operand1;
   } else if (operand1 === "0") {
     operand1 = value;
   }
@@ -103,7 +117,7 @@ function handleOperationButtonClick(event) {
 
 function handleEqualsButtonClick(event) {
   let value = event.target.textContent;
-  console.log(operand1, operator, operand2);
+  console.log(+operand1, operator, +operand2);
   if (operand1 !== null && operand2 !== null) {
     if (operator == "/" && operand2 == 0) {
       display.textContent = "Infinity it is!";

@@ -1,5 +1,7 @@
 body {
-  background-color: rgb(78, 28, 28);
+  background-color: rgb(210, 202, 202);
+  margin: 0;
+  padding: 0;
   /* text-align: center; */
 }
 
@@ -7,10 +9,11 @@ body {
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: 30%;
   height: 600px;
   margin: 50px auto;
   border-radius: 5px;
+  border: 1px solid black;
 }
 
 .display {
@@ -41,6 +44,23 @@ body {
   display: flex;
   justify-content: center;
   height: 100%;
+}
+
+/* Text Stylings */
+.welcomeNote {
+  text-align: center;
+  margin: 32px 0 100px 0;
+}
+
+.endNote {
+  text-align: center;
+  margin-top: 100px;
+  border-top: 1px solid black;
+}
+
+.endNote a {
+  text-decoration: none;
+  color: black;
 }
 
 /* Buttons styling */
